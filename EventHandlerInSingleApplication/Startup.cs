@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EventHandlerInSingleApplication.BLL;
 using EventHandlerInSingleApplication.BLL.EventHandlers;
+using EventHandlerInSingleApplication.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,11 @@ namespace EventHandlerInSingleApplication
 
             services.AddScoped<IOrderManager, OrderManager>();
             services.AddScoped<IShoppingCartManager, ShoppingCartManager>();
+            services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ShoppingCartSubmittedEventHandler>();
+            services.AddScoped<EventHandlerContainer>();
 
 
 

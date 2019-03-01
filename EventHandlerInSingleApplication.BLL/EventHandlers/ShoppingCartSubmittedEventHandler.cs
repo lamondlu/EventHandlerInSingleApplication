@@ -17,12 +17,15 @@ namespace EventHandlerInSingleApplication.BLL.EventHandlers
 
         public void Run(EventBase obj)
         {
-
+            Console.WriteLine("Hello World");
         }
 
         public Task RunAsync(EventBase obj)
         {
-            throw new NotImplementedException();
+            return Task.Run(() =>
+            {
+                Console.WriteLine("Hello World");
+            });
         }
     }
 }

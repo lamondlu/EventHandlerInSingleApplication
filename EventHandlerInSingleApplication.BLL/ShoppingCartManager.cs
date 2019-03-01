@@ -1,4 +1,5 @@
-﻿using EventHandlerInSingleApplication.BLL.Events;
+﻿using EventHandlerInSingleApplication.BLL.EventHandlers;
+using EventHandlerInSingleApplication.BLL.Events;
 using EventHandlerInSingleApplication.DAL;
 using System;
 using System.Collections.Generic;
@@ -9,17 +10,21 @@ namespace EventHandlerInSingleApplication.BLL
     public class ShoppingCartManager : IShoppingCartManager
     {
         private IUnitOfWork _unitOfWork = null;
+        private EventHandlerContainer _container = null;
 
-        public ShoppingCartManager(IUnitOfWork unitOfWork)
+        public ShoppingCartManager(IUnitOfWork unitOfWork, EventHandlerContainer container)
         {
             _unitOfWork = unitOfWork;
+            _container = container;
+
+            container.Subscribe<ShoppingCartSubmittedEvent>(typeof(ShoppingCartSubmittedEventHandler));
         }
 
         public void SubmitShoppingCart()
         {
             _unitOfWork.ShoppingCartRepository.AddShoppingCart();
 
-            EventHandlerContainer.Current.Trigger(new ShoppingCartSubmittedEvent());
+            _container.Trigger(new ShoppingCartSubmittedEvent());
 
             _unitOfWork.Save();
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventHandlerInSingleApplication.BLL;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventHandlerInSingleApplication.Controllers
@@ -10,10 +11,19 @@ namespace EventHandlerInSingleApplication.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private IShoppingCartManager _shoppingCartManager = null;
+
+        public ValuesController(IShoppingCartManager shoppingCartManager)
+        {
+            _shoppingCartManager = shoppingCartManager;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            _shoppingCartManager.SubmitShoppingCart();
+
             return new string[] { "value1", "value2" };
         }
 
