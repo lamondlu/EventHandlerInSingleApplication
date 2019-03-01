@@ -6,6 +6,9 @@ namespace EventHandlerInSingleApplication.DAL
 {
     public class ShoppingCartRepository : IShoppingCartRepository
     {
-        
+        public void AddShoppingCart()
+        {
+
+        }
     }
 }

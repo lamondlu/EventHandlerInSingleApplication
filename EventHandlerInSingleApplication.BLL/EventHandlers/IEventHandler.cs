@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace EventHandlerInSingleApplication.BLL.EventHandlers
 {
-    public interface IEventHandler<T> where T : EventBase
+    public interface IEventHandler<out T> where T : EventBase
     {
-        void Run(T obj);
+        void Run(EventBase obj);
 
-        Task RunAsync(T obj);
+        Task RunAsync(EventBase obj);
     }
 }

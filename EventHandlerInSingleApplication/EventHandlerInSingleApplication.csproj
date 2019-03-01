@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EventHandlerInSingleApplication.BLL\EventHandlerInSingleApplication.BLL.csproj" />
+    <ProjectReference Include="..\EventHandlerInSingleApplication.DAL\EventHandlerInSingleApplication.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
