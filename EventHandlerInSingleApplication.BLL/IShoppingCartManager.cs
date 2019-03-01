@@ -6,6 +6,6 @@ namespace EventHandlerInSingleApplication.BLL
 {
     public interface IShoppingCartManager
     {
-        void SubmitShoppingCart();
+        void SubmitShoppingCart(string shoppingCartId);
     }
 }

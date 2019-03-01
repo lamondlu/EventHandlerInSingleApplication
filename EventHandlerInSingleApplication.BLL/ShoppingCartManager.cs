@@ -4,6 +4,7 @@ using EventHandlerInSingleApplication.DAL;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace EventHandlerInSingleApplication.BLL
 {
@@ -20,11 +21,21 @@ namespace EventHandlerInSingleApplication.BLL
             container.Subscribe<ShoppingCartSubmittedEvent>(typeof(ShoppingCartSubmittedEventHandler));
         }
 
-        public void SubmitShoppingCart()
+        public void SubmitShoppingCart(string shoppingCartId)
         {
-            _unitOfWork.ShoppingCartRepository.AddShoppingCart();
+            var shoppingCart = _unitOfWork.ShoppingCartRepository.GetShoppingCart(shoppingCartId);
 
-            _container.Trigger(new ShoppingCartSubmittedEvent());
+            _unitOfWork.ShoppingCartRepository.SubmitShoppingCart(shoppingCartId);
+
+            _container.Trigger(new ShoppingCartSubmittedEvent()
+            {
+                Items = shoppingCart.Items.Select(p => new ShoppingCartSubmittedItem
+                {
+                    ItemId = p.ItemId,
+                    Name = p.Name,
+                    Price = p.Price
+                }).ToList()
+            });
 
             _unitOfWork.Save();
         }

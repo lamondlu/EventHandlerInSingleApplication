@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EventHandlerInSingleApplication.BLL\EventHandlerInSingleApplication.BLL.csproj" />
     <ProjectReference Include="..\EventHandlerInSingleApplication.DAL\EventHandlerInSingleApplication.DAL.csproj" />
+    <ProjectReference Include="..\EventHandlerInSingleApplication.Models\EventHandlerInSingleApplication.Models.csproj" />
   </ItemGroup>
 
 </Project>
