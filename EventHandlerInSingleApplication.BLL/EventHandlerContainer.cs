@@ -34,6 +34,11 @@ namespace EventHandlerInSingleApplication.BLL
         {
             var name = typeof(T).Name;
             _mappings[name].Remove(t.FullName);
+
+            if (_mappings[name].Count == 0)
+            {
+                _mappings.Remove(name);
+            }
         }
 
         public void Trigger<T>(T o) where T : EventBase
