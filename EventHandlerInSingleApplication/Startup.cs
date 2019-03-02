@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EventHandlerInSingleApplication.BLL;
 using EventHandlerInSingleApplication.BLL.EventHandlers;
+using EventHandlerInSingleApplication.BLL.Events;
 using EventHandlerInSingleApplication.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +40,7 @@ namespace EventHandlerInSingleApplication
             services.AddScoped<EventHandlerContainer>();
 
 
+            EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, ShoppingCartSubmittedEventHandler>();
 
         }
 

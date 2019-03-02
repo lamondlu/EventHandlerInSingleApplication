@@ -11,14 +11,16 @@ namespace EventHandlerInSingleApplication.BLL
     public class EventHandlerContainer
     {
         private IServiceProvider _serviceProvider = null;
-        private Dictionary<string, List<Type>> _mappings = new Dictionary<string, List<Type>>();
+        private static Dictionary<string, List<Type>> _mappings = new Dictionary<string, List<Type>>();
 
         public EventHandlerContainer(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
 
-        public void Subscribe<T>(Type t)
+        public static void Subscribe<T, THandler>()
+            where T : EventBase
+            where THandler : IEventHandler<T>
         {
             var name = typeof(T).Name;
 
@@ -27,13 +29,15 @@ namespace EventHandlerInSingleApplication.BLL
                 _mappings.Add(name, new List<Type> { });
             }
 
-            _mappings[name].Add(t);
+            _mappings[name].Add(typeof(THandler));
         }
 
-        public void Unsubscribe<T>(Type t) where T : EventBase
+        public static void Unsubscribe<T, THandler>()
+            where T : EventBase
+            where THandler : IEventHandler<T>
         {
             var name = typeof(T).Name;
-            _mappings[name].Remove(t);
+            _mappings[name].Remove(typeof(THandler));
 
             if (_mappings[name].Count == 0)
             {
@@ -43,8 +47,6 @@ namespace EventHandlerInSingleApplication.BLL
 
         public void Trigger<T>(T o) where T : EventBase
         {
-            var a = _serviceProvider.GetService(typeof(IEnumerable<IEventHandler<T>>));
-
             var name = typeof(T).Name;
 
             if (_mappings.ContainsKey(name))

@@ -17,8 +17,6 @@ namespace EventHandlerInSingleApplication.BLL
         {
             _unitOfWork = unitOfWork;
             _container = container;
-
-            container.Subscribe<ShoppingCartSubmittedEvent>(typeof(ShoppingCartSubmittedEventHandler));
         }
 
         public void AddItemToShoppingCart(string shoppingCartId, string itemId)
