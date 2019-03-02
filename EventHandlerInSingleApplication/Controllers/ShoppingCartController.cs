@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EventHandlerInSingleApplication.BLL;
 using EventHandlerInSingleApplication.Models.DTOs;
+using EventHandlerInSingleApplication.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventHandlerInSingleApplication.Controllers
@@ -17,6 +18,13 @@ namespace EventHandlerInSingleApplication.Controllers
         public ShoppingCartController(IShoppingCartManager shoppingCartManager)
         {
             _shoppingCartManager = shoppingCartManager;
+        }
+
+        [HttpGet]
+        [Route("~/api/items")]
+        public List<ItemViewModel> GetItems()
+        {
+            return _shoppingCartManager.GetAllItems();
         }
 
         [HttpPost]

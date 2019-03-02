@@ -14,5 +14,7 @@ namespace EventHandlerInSingleApplication.DAL
         ShoppingCartViewModel GetShoppingCart(string shoppingCartId);
 
         void AddItemToShippingCart(string shoppingCartId, string itemId);
+
+        List<ItemViewModel> GetAllItems();
     }
 }

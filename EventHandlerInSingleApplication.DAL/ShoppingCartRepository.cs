@@ -43,5 +43,15 @@ namespace EventHandlerInSingleApplication.DAL
             var item = DataStore.Items.First(p => p.ItemId == itemId);
             shoppingCart.Items.Add(item);
         }
+
+        public List<ItemViewModel> GetAllItems()
+        {
+            return DataStore.Items.Select(p => new ItemViewModel
+            {
+                ItemId = p.ItemId,
+                Name = p.Name,
+                Price = p.Price
+            }).ToList();
+        }
     }
 }

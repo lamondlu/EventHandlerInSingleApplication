@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using EventHandlerInSingleApplication.Models.ViewModels;
 
 namespace EventHandlerInSingleApplication.BLL
 {
@@ -50,6 +51,11 @@ namespace EventHandlerInSingleApplication.BLL
             });
 
             _unitOfWork.Save();
+        }
+
+        public List<ItemViewModel> GetAllItems()
+        {
+            return _unitOfWork.ShoppingCartRepository.GetAllItems();
         }
     }
 }

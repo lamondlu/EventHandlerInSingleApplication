@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace EventHandlerInSingleApplication.BLL.EventHandlers
 {
@@ -15,16 +16,24 @@ namespace EventHandlerInSingleApplication.BLL.EventHandlers
             _orderManager = orderManager;
         }
 
-        public void Run(EventBase obj)
+        public void Run(ShoppingCartSubmittedEvent obj)
         {
-            Console.WriteLine("Hello World");
+            _orderManager.CreateNewOrder(new Models.DTOs.CreateOrderDTO
+            {
+                Items = obj.Items.Select(p => new Models.DTOs.NewOrderItemDTO
+                {
+                    ItemId = p.ItemId,
+                    Name = p.Name,
+                    Price = p.Price
+                }).ToList()
+            });
         }
 
-        public Task RunAsync(EventBase obj)
+        public Task RunAsync(ShoppingCartSubmittedEvent obj)
         {
             return Task.Run(() =>
             {
-                Console.WriteLine("Hello World");
+                Run(obj);
             });
         }
     }
