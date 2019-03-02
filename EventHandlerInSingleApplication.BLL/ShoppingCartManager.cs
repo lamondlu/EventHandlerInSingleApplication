@@ -23,12 +23,16 @@ namespace EventHandlerInSingleApplication.BLL
 
         public void AddItemToShoppingCart(string shoppingCartId, string itemId)
         {
-
+            _unitOfWork.ShoppingCartRepository.AddItemToShippingCart(shoppingCartId, itemId);
+            _unitOfWork.Save();
         }
 
         public string CreateShoppingCart()
         {
-            throw new NotImplementedException();
+            var shoppingCartId = _unitOfWork.ShoppingCartRepository.CreateShoppingCart();
+            _unitOfWork.Save();
+
+            return shoppingCartId;
         }
 
         public void SubmitShoppingCart(string shoppingCartId)

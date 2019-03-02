@@ -9,6 +9,10 @@ namespace EventHandlerInSingleApplication.DAL
     {
         void SubmitShoppingCart(string shoppingCartId);
 
+        string CreateShoppingCart();
+
         ShoppingCartViewModel GetShoppingCart(string shoppingCartId);
+
+        void AddItemToShippingCart(string shoppingCartId, string itemId);
     }
 }

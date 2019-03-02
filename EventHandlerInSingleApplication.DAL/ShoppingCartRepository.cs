@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using EventHandlerInSingleApplication.Models.ViewModels;
+using System.Linq;
 
 namespace EventHandlerInSingleApplication.DAL
 {
@@ -9,12 +10,38 @@ namespace EventHandlerInSingleApplication.DAL
     {
         public ShoppingCartViewModel GetShoppingCart(string shoppingCartId)
         {
-            throw new NotImplementedException();
+            var shoppingCart = DataStore.ShoppingCarts.First(p => p.ShoppingCartId == shoppingCartId);
+            return new ShoppingCartViewModel
+            {
+                ShoppingCartId = shoppingCart.ShoppingCartId,
+                Items = shoppingCart.Items.Select(p => new ShoppingCartItemViewModel
+                {
+                    ItemId = p.ItemId,
+                    Name = p.Name,
+                    Price = p.Price
+                }).ToList()
+            };
         }
 
         public void SubmitShoppingCart(string shoppingCartId)
         {
-            throw new NotImplementedException();
+            var shoppingCart = DataStore.ShoppingCarts.First(p => p.ShoppingCartId == shoppingCartId);
+            shoppingCart.IsSubmit = true;
+        }
+
+        public string CreateShoppingCart()
+        {
+            var shoppingCart = new ShoppingCart();
+            DataStore.ShoppingCarts.Add(shoppingCart);
+
+            return shoppingCart.ShoppingCartId;
+        }
+
+        public void AddItemToShippingCart(string shoppingCartId, string itemId)
+        {
+            var shoppingCart = DataStore.ShoppingCarts.First(p => p.ShoppingCartId == shoppingCartId);
+            var item = DataStore.Items.First(p => p.ItemId == itemId);
+            shoppingCart.Items.Add(item);
         }
     }
 }
