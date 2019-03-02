@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using EventHandlerInSingleApplication.Models.DTOs;
+using Newtonsoft.Json;
 
 namespace EventHandlerInSingleApplication.BLL
 {
@@ -9,7 +10,9 @@ namespace EventHandlerInSingleApplication.BLL
     {
         public string CreateNewOrder(CreateOrderDTO dto)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"One order created: {JsonConvert.SerializeObject(dto)}");
+
+            return string.Empty;
         }
     }
 }

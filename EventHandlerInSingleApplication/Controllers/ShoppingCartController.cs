@@ -28,12 +28,12 @@ namespace EventHandlerInSingleApplication.Controllers
         }
 
         [HttpPost]
-        [Route("{shoppingCartId}/Items")]
-        public IActionResult AddItemToShoppingCart([FromBody]AddItemToShoppingCartDTO dto)
+        [Route("~/api/ShoppingCarts/{shoppingCartId}/Items")]
+        public IActionResult AddItemToShoppingCart(string shoppingCartId, [FromBody]AddItemToShoppingCartDTO dto)
         {
             try
             {
-                _shoppingCartManager.AddItemToShoppingCart(dto.ShoppingCartId, dto.ItemId);
+                _shoppingCartManager.AddItemToShoppingCart(shoppingCartId, dto.ItemId);
                 return StatusCode(201);
             }
             catch (Exception ex)
@@ -42,8 +42,23 @@ namespace EventHandlerInSingleApplication.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("~/api/shoppingCarts")]
+        public IActionResult CreateNewShoppingCart()
+        {
+            try
+            {
+                var shoppingCartId = _shoppingCartManager.CreateShoppingCart();
+                return StatusCode(201, new { id = shoppingCartId });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { ErrorMessage = ex.ToString() });
+            }
+        }
+
         [HttpPut]
-        [Route("{shoppingCartId}")]
+        [Route("~/api/shoppingCarts/{shoppingCartId}")]
         public IActionResult SubmitShoppingCart(string shoppingCartId)
         {
             try
