@@ -11,7 +11,7 @@ namespace EventHandlerInSingleApplication.BLL
     public class EventHandlerContainer
     {
         private IServiceProvider _serviceProvider = null;
-        private Dictionary<string, List<string>> _mappings = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<Type>> _mappings = new Dictionary<string, List<Type>>();
 
         public EventHandlerContainer(IServiceProvider serviceProvider)
         {
@@ -24,16 +24,16 @@ namespace EventHandlerInSingleApplication.BLL
 
             if (!_mappings.ContainsKey(name))
             {
-                _mappings.Add(name, new List<string> { });
+                _mappings.Add(name, new List<Type> { });
             }
 
-            _mappings[name].Add(t.FullName);
+            _mappings[name].Add(t);
         }
 
         public void Unsubscribe<T>(Type t) where T : EventBase
         {
             var name = typeof(T).Name;
-            _mappings[name].Remove(t.FullName);
+            _mappings[name].Remove(t);
 
             if (_mappings[name].Count == 0)
             {
@@ -49,7 +49,7 @@ namespace EventHandlerInSingleApplication.BLL
             {
                 foreach (var handler in _mappings[name])
                 {
-                    var service = (IEventHandler<T>)_serviceProvider.GetService(Assembly.GetExecutingAssembly().GetType(handler));
+                    var service = (IEventHandler<T>)_serviceProvider.GetService(handler);
 
                     service.Run(o);
                 }
@@ -64,7 +64,7 @@ namespace EventHandlerInSingleApplication.BLL
             {
                 foreach (var handler in _mappings[name])
                 {
-                    var service = (IEventHandler<T>)_serviceProvider.GetService(Assembly.GetExecutingAssembly().GetType(handler));
+                    var service = (IEventHandler<T>)_serviceProvider.GetService(handler);
 
                     await service.RunAsync(o);
                 }
