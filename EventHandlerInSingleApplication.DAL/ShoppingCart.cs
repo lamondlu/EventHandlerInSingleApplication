@@ -15,5 +15,7 @@ namespace EventHandlerInSingleApplication.DAL
         public string ShoppingCartId { get; set; }
 
         public List<Item> Items { get; set; }
+
+        public bool IsSubmit { get; set; }
     }
 }
