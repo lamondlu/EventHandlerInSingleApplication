@@ -43,6 +43,8 @@ namespace EventHandlerInSingleApplication.BLL
 
         public void Trigger<T>(T o) where T : EventBase
         {
+            var a = _serviceProvider.GetService(typeof(IEnumerable<IEventHandler<T>>));
+
             var name = typeof(T).Name;
 
             if (_mappings.ContainsKey(name))

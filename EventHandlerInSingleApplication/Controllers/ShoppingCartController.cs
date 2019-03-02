@@ -21,9 +21,17 @@ namespace EventHandlerInSingleApplication.Controllers
 
         [HttpPost]
         [Route("{shoppingCartId}/Items")]
-        public void AddItemToShoppingCart([FromBody]AddItemToShoppingCartDTO dto)
+        public IActionResult AddItemToShoppingCart([FromBody]AddItemToShoppingCartDTO dto)
         {
-
+            try
+            {
+                _shoppingCartManager.AddItemToShoppingCart(dto.ShoppingCartId, dto.ItemId);
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { ErrorMessage = ex.ToString() });
+            }
         }
 
         [HttpPut]
