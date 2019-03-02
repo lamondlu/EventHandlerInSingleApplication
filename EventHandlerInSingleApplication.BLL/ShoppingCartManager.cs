@@ -21,6 +21,16 @@ namespace EventHandlerInSingleApplication.BLL
             container.Subscribe<ShoppingCartSubmittedEvent>(typeof(ShoppingCartSubmittedEventHandler));
         }
 
+        public void AddItemToShoppingCart(string shoppingCartId, string itemId)
+        {
+
+        }
+
+        public string CreateShoppingCart()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SubmitShoppingCart(string shoppingCartId)
         {
             var shoppingCart = _unitOfWork.ShoppingCartRepository.GetShoppingCart(shoppingCartId);
