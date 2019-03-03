@@ -38,10 +38,11 @@ namespace EventHandlerInSingleApplication
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ShoppingCartSubmittedEventHandler>();
             services.AddScoped<EventHandlerContainer>();
+            services.AddScoped<ConfirmEmailSentEventHandler>();
 
 
             EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, ShoppingCartSubmittedEventHandler>();
-
+            EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, ConfirmEmailSentEventHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
