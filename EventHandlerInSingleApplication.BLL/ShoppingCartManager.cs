@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using EventHandlerInSingleApplication.Models.ViewModels;
+using EventHandlerInSingleApplication.Models.DTOs;
 
 namespace EventHandlerInSingleApplication.BLL
 {
@@ -40,15 +41,27 @@ namespace EventHandlerInSingleApplication.BLL
 
             _unitOfWork.ShoppingCartRepository.SubmitShoppingCart(shoppingCartId);
 
-            _container.Publish(new ShoppingCartSubmittedEvent()
+            //_container.Publish(new ShoppingCartSubmittedEvent()
+            //{
+            //    Items = shoppingCart.Items.Select(p => new ShoppingCartSubmittedItem
+            //    {
+            //        ItemId = p.ItemId,
+            //        Name = p.Name,
+            //        Price = p.Price
+            //    }).ToList()
+            //});
+
+            _unitOfWork.OrderRepository.CreatOrder(new CreateOrderDTO
             {
-                Items = shoppingCart.Items.Select(p => new ShoppingCartSubmittedItem
+                Items = shoppingCart.Items.Select(p => new NewOrderItemDTO
                 {
                     ItemId = p.ItemId,
                     Name = p.Name,
                     Price = p.Price
                 }).ToList()
             });
+
+            Console.WriteLine("Confirm Email Sent.");
 
             _unitOfWork.Save();
         }

@@ -4,3 +4,4 @@ A sample project about how to create event subscribe/publish feature in single a
 ## Architecture
 
 ![](https://github.com/lamondlu/EventHandlerInSingleApplication/blob/master/20190303215534.png)
+
