@@ -45,7 +45,7 @@ namespace EventHandlerInSingleApplication.BLL
             }
         }
 
-        public void Trigger<T>(T o) where T : EventBase
+        public void Publish<T>(T o) where T : EventBase
         {
             var name = typeof(T).Name;
 
@@ -60,7 +60,7 @@ namespace EventHandlerInSingleApplication.BLL
             }
         }
 
-        public async Task TriggerAsync<T>(T o) where T : EventBase
+        public async Task PublishAsync<T>(T o) where T : EventBase
         {
             var name = typeof(T).Name;
 

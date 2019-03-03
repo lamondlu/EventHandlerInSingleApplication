@@ -1,2 +1,3 @@
-# EventHandlerInSingleApplication
-A sample project about how to create a event handler feature in single application in asp.net core
+# Event Subscibe/Publish sample in ASP.NET Core
+A sample project about how to create event subscribe/publish feature in single application in asp.net core
+

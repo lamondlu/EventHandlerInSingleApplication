@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventHandlerInSingleApplica
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventHandlerInSingleApplication.DAL", "EventHandlerInSingleApplication.DAL\EventHandlerInSingleApplication.DAL.csproj", "{5FEFF3FD-08E5-4CE7-9281-A33E985B188F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHandlerInSingleApplication.Models", "EventHandlerInSingleApplication.Models\EventHandlerInSingleApplication.Models.csproj", "{A683CAD1-DFBB-4951-9326-9666DA569454}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventHandlerInSingleApplication.Models", "EventHandlerInSingleApplication.Models\EventHandlerInSingleApplication.Models.csproj", "{A683CAD1-DFBB-4951-9326-9666DA569454}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{11A9EC4F-0A72-4F70-97F9-3FABA48FD1BA}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

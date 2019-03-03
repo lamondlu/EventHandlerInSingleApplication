@@ -40,7 +40,7 @@ namespace EventHandlerInSingleApplication.BLL
 
             _unitOfWork.ShoppingCartRepository.SubmitShoppingCart(shoppingCartId);
 
-            _container.Trigger(new ShoppingCartSubmittedEvent()
+            _container.Publish(new ShoppingCartSubmittedEvent()
             {
                 Items = shoppingCart.Items.Select(p => new ShoppingCartSubmittedItem
                 {
