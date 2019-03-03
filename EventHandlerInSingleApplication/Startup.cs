@@ -36,13 +36,13 @@ namespace EventHandlerInSingleApplication
             services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ShoppingCartSubmittedEventHandler>();
+            services.AddScoped<CreateOrderHandler>();
             services.AddScoped<EventHandlerContainer>();
-            services.AddScoped<ConfirmEmailSentEventHandler>();
+            services.AddScoped<ConfirmEmailSentHandler>();
 
 
-            EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, ShoppingCartSubmittedEventHandler>();
-            EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, ConfirmEmailSentEventHandler>();
+            EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, CreateOrderHandler>();
+            EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, ConfirmEmailSentHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace EventHandlerInSingleApplication.BLL.EventHandlers
 {
-    public class ShoppingCartSubmittedEventHandler : IEventHandler<ShoppingCartSubmittedEvent>
+    public class CreateOrderHandler : IEventHandler<ShoppingCartSubmittedEvent>
     {
         private IOrderManager _orderManager = null;
 
-        public ShoppingCartSubmittedEventHandler(IOrderManager orderManager)
+        public CreateOrderHandler(IOrderManager orderManager)
         {
             _orderManager = orderManager;
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventHandlerInSingleApplication.BLL.EventHandlers
 {
-    public class ConfirmEmailSentEventHandler : IEventHandler<ShoppingCartSubmittedEvent>
+    public class ConfirmEmailSentHandler : IEventHandler<ShoppingCartSubmittedEvent>
     {
         public void Run(ShoppingCartSubmittedEvent obj)
         {
