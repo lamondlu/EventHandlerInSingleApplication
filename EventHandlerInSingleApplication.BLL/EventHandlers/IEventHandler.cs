@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventHandlerInSingleApplication.BLL.EventHandlers
 {
-    public interface IEventHandler<in T> where T : EventBase
+    public interface IEventHandler<T> where T : EventBase
     {
         void Run(T obj);
 
