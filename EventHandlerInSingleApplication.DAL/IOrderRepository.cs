@@ -7,6 +7,6 @@ namespace EventHandlerInSingleApplication.DAL
 {
     public interface IOrderRepository
     {
-        void CreatOrder(CreateOrderDTO dto);
+        string CreatOrder(CreateOrderDTO dto);
     }
 }

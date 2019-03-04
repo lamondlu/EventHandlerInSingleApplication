@@ -7,7 +7,6 @@ namespace EventHandlerInSingleApplication.DAL
     public static class DataStore
     {
         public static List<Order> Orders = new List<Order>();
-        public static List<OrderItem> OrderItems = new List<OrderItem>();
         public static List<ShoppingCart> ShoppingCarts = new List<ShoppingCart>();
 
         public static List<Item> Items = new List<Item>()

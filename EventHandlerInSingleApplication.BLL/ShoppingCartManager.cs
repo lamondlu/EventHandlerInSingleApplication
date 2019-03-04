@@ -41,19 +41,9 @@ namespace EventHandlerInSingleApplication.BLL
 
             _unitOfWork.ShoppingCartRepository.SubmitShoppingCart(shoppingCartId);
 
-            //_container.Publish(new ShoppingCartSubmittedEvent()
-            //{
-            //    Items = shoppingCart.Items.Select(p => new ShoppingCartSubmittedItem
-            //    {
-            //        ItemId = p.ItemId,
-            //        Name = p.Name,
-            //        Price = p.Price
-            //    }).ToList()
-            //});
-
-            _unitOfWork.OrderRepository.CreatOrder(new CreateOrderDTO
+            _container.Publish(new ShoppingCartSubmittedEvent()
             {
-                Items = shoppingCart.Items.Select(p => new NewOrderItemDTO
+                Items = shoppingCart.Items.Select(p => new ShoppingCartSubmittedItem
                 {
                     ItemId = p.ItemId,
                     Name = p.Name,
@@ -61,7 +51,17 @@ namespace EventHandlerInSingleApplication.BLL
                 }).ToList()
             });
 
-            Console.WriteLine("Confirm Email Sent.");
+            //_unitOfWork.OrderRepository.CreatOrder(new CreateOrderDTO
+            //{
+            //    Items = shoppingCart.Items.Select(p => new NewOrderItemDTO
+            //    {
+            //        ItemId = p.ItemId,
+            //        Name = p.Name,
+            //        Price = p.Price
+            //    }).ToList()
+            //});
+
+            //Console.WriteLine("Confirm Email Sent.");
 
             _unitOfWork.Save();
         }
