@@ -11,7 +11,7 @@ namespace EventHandlerInSingleApplication.BLL
     public class EventHandlerContainer
     {
         private IServiceProvider _serviceProvider = null;
-        private static Dictionary<string, List<Type>> _mappings = new Dictionary<string, List<Type>>();
+        private static Dictionary<Type, List<Type>> _mappings = new Dictionary<Type, List<Type>>();
 
         public EventHandlerContainer(IServiceProvider serviceProvider)
         {
@@ -22,7 +22,7 @@ namespace EventHandlerInSingleApplication.BLL
             where T : EventBase
             where THandler : IEventHandler<T>
         {
-            var name = typeof(T).Name;
+            var name = typeof(T);
 
             if (!_mappings.ContainsKey(name))
             {
@@ -36,7 +36,7 @@ namespace EventHandlerInSingleApplication.BLL
             where T : EventBase
             where THandler : IEventHandler<T>
         {
-            var name = typeof(T).Name;
+            var name = typeof(T);
             _mappings[name].Remove(typeof(THandler));
 
             if (_mappings[name].Count == 0)
@@ -47,7 +47,7 @@ namespace EventHandlerInSingleApplication.BLL
 
         public void Publish<T>(T o) where T : EventBase
         {
-            var name = typeof(T).Name;
+            var name = typeof(T);
 
             if (_mappings.ContainsKey(name))
             {
@@ -62,7 +62,7 @@ namespace EventHandlerInSingleApplication.BLL
 
         public async Task PublishAsync<T>(T o) where T : EventBase
         {
-            var name = typeof(T).Name;
+            var name = typeof(T);
 
             if (_mappings.ContainsKey(name))
             {
