@@ -1,10 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MediatR;
 
 namespace EventHandlerInSingleApplication.BLL.Events
 {
-    public class ShoppingCartSubmittedEvent : EventBase
+    //public class ShoppingCartSubmittedEvent : EventBase
+    //{
+    //    public ShoppingCartSubmittedEvent()
+    //    {
+    //        Items = new List<ShoppingCartSubmittedItem>();
+    //    }
+
+    //    public List<ShoppingCartSubmittedItem> Items { get; set; }
+    //}
+
+    public class ShoppingCartSubmittedEvent : INotification
     {
         public ShoppingCartSubmittedEvent()
         {

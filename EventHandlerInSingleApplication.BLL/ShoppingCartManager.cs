@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using EventHandlerInSingleApplication.Models.ViewModels;
 using EventHandlerInSingleApplication.Models.DTOs;
+using MediatR;
 
 namespace EventHandlerInSingleApplication.BLL
 {
@@ -14,11 +15,13 @@ namespace EventHandlerInSingleApplication.BLL
     {
         private IUnitOfWork _unitOfWork = null;
         private EventHandlerContainer _container = null;
+        private IMediator _mediator = null;
 
-        public ShoppingCartManager(IUnitOfWork unitOfWork, EventHandlerContainer container)
+        public ShoppingCartManager(IUnitOfWork unitOfWork, EventHandlerContainer container, IMediator mediator)
         {
             _unitOfWork = unitOfWork;
             _container = container;
+            _mediator = mediator;
         }
 
         public void AddItemToShoppingCart(string shoppingCartId, string itemId)
@@ -41,7 +44,7 @@ namespace EventHandlerInSingleApplication.BLL
 
             _unitOfWork.ShoppingCartRepository.SubmitShoppingCart(shoppingCartId);
 
-            _container.Publish(new ShoppingCartSubmittedEvent()
+            _mediator.Publish(new ShoppingCartSubmittedEvent()
             {
                 Items = shoppingCart.Items.Select(p => new ShoppingCartSubmittedItem
                 {
@@ -50,6 +53,16 @@ namespace EventHandlerInSingleApplication.BLL
                     Price = p.Price
                 }).ToList()
             });
+
+            //_container.Publish(new ShoppingCartSubmittedEvent()
+            //{
+            //    Items = shoppingCart.Items.Select(p => new ShoppingCartSubmittedItem
+            //    {
+            //        ItemId = p.ItemId,
+            //        Name = p.Name,
+            //        Price = p.Price
+            //    }).ToList()
+            //});
 
             //_unitOfWork.OrderRepository.CreatOrder(new CreateOrderDTO
             //{

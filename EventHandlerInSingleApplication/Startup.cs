@@ -6,6 +6,7 @@ using EventHandlerInSingleApplication.BLL;
 using EventHandlerInSingleApplication.BLL.EventHandlers;
 using EventHandlerInSingleApplication.BLL.Events;
 using EventHandlerInSingleApplication.DAL;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,8 +42,10 @@ namespace EventHandlerInSingleApplication
             services.AddScoped<ConfirmEmailSentHandler>();
 
 
-            EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, CreateOrderHandler>();
-            EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, ConfirmEmailSentHandler>();
+            //EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, CreateOrderHandler>();
+            //EventHandlerContainer.Subscribe<ShoppingCartSubmittedEvent, ConfirmEmailSentHandler>();
+            services.AddMediatR();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

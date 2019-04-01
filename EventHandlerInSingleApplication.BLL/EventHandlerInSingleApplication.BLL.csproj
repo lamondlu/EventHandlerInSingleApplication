@@ -9,6 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="MediatR">
+      <HintPath>C:\Users\Lamond Lu\.nuget\packages\mediatr\6.0.0\lib\netstandard2.0\MediatR.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
